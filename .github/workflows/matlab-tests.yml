@@ -1,0 +1,76 @@
+name: MATLAB validation
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: "20 2 * * 1"
+
+env:
+  MLM_LICENSE_TOKEN: ${{ secrets.MLM_LICENSE_TOKEN }}
+  ANSWER_KEY_PASSWORD: ${{ secrets.ANSWER_KEY_PASSWORD }}
+
+jobs:
+  fast-tests:
+    if: github.event_name == 'push' || github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+      - name: Unlock the answer key
+        if: env.ANSWER_KEY_PASSWORD != ''
+        run: 7z x -y -p"$ANSWER_KEY_PASSWORD" instructor_answer_key.7z
+      - name: Set up MATLAB
+        uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2025b
+          products: Simulink Signal_Processing_Toolbox
+      - name: Run static checks and fast tests
+        uses: matlab-actions/run-build@v3
+        with:
+          tasks: check testFast
+      - name: Upload test reports
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: matlab-fast-reports
+          path: artifacts/
+          retention-days: 7
+
+  full-release-validation:
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+      - name: Unlock the answer key
+        if: env.ANSWER_KEY_PASSWORD != ''
+        run: 7z x -y -p"$ANSWER_KEY_PASSWORD" instructor_answer_key.7z
+      - name: Set up MATLAB
+        uses: matlab-actions/setup-matlab@v3
+        with:
+          release: R2025b
+          products: Simulink Signal_Processing_Toolbox
+      - name: Start a virtual display for the dashboard tests
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq xvfb
+          Xvfb :99 -screen 0 1920x1080x24 &
+          echo "DISPLAY=:99" >> "$GITHUB_ENV"
+      - name: Generate the load cases the answer-key sweep reuses
+        if: env.ANSWER_KEY_PASSWORD != ''
+        uses: matlab-actions/run-command@v2
+        with:
+          command: cd instructor; generateLoadCases
+      - name: Run complete release validation
+        uses: matlab-actions/run-build@v3
+        with:
+          tasks: release
+      - name: Upload validation reports
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: matlab-full-reports
+          path: artifacts/
+          retention-days: 7

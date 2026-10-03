@@ -1,0 +1,16 @@
+instructor/solution/Solution_00_Run_All.m
+instructor/solution/Solution_01_Load_Inputs.m
+instructor/solution/Solution_02_Gear_Design.m
+instructor/solution/Solution_03_Shaft_Design.m
+instructor/solution/Solution_04_Bearing_Selection.m
+instructor/solution/rateHelicalStage.m
+instructor/solution/computeHelicalJ.m
+instructor/solution/bearingCatalogue.m
+instructor/solution/selectStage2Module.m
+instructor/solution/simplySupportedMoment.m
+instructor/solution/runAnswerKey.m
+instructor/solution/writeAnswerKeyReport.m
+docs/EXPECTED_RESULTS.md
+tests/tAnswerKeyParametric.m
+tests/tEngineeringBenchmarks.m
+tests/tSolutionReadiness.m
