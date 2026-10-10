@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+message: "If you use this project in teaching or research, please cite it as below."
+type: software
+title: "SimDrive: EV Transmission Design"
+version: "1.0.0"
+date-released: "2026-10-10"
+license: "BSD-3-Clause"
+authors:
+  - family-names: Ibrahim
+    given-names: Ahmed Hanafy
+    email: "ahmedibrahim@aus.edu"
+    affiliation: "American University of Sharjah"
+  - family-names: Al Herbawi
+    given-names: Mahmoud
+  - family-names: Zahir
+    given-names: Malek
+abstract: >
+  Teaching project for machine design courses based on Shigley. A Simulink model
+  of a passenger EV produces motor torque and speed for three load cases
+  (FTP-75 city cycle, hill climb, full-throttle launch), from which students
+  design a single-speed, two-stage helical gearbox with the procedures of
+  Shigley's Mechanical Engineering Design, 11th edition. Supported by the
+  MathWorks Teaching Support Award.
+keywords:
+  - mechanical design
+  - MATLAB
+  - Simulink
+  - EV drivetrain
+  - gearbox design
+  - AGMA
+  - Shigley
+  - fatigue analysis
+  - bearing life
+  - teaching module
+repository-code: "https://github.com/ahmedibrahim-aus/SimDrive-EV-transmission"
+url: "https://github.com/ahmedibrahim-aus/SimDrive-EV-transmission"

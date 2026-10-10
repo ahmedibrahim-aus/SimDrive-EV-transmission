@@ -1,0 +1,21 @@
+# Normalize text line endings in the repository (LF); check out native per OS.
+* text=auto
+
+# Binary file types: never apply EOL conversion or text diffing.
+# (.mlx Live Scripts are OOXML zips; EOL conversion would corrupt them.)
+*.mlx       binary
+*.mat       binary
+*.slx       binary
+*.slxc      binary
+*.mdl       binary
+*.mexw64    binary
+*.mexa64    binary
+*.mexmaci64 binary
+*.fig       binary
+*.p         binary
+*.png       binary
+*.jpg       binary
+*.pdf       binary
+*.docx      binary
+*.pptx      binary
+*.7z binary
