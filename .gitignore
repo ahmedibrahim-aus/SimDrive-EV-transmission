@@ -1,0 +1,40 @@
+# MATLAB
+*.asv
+*.m~
+*.mex*
+*.prj
+octave-workspace
+slprj/
+*.slxc
+*.slxp
+*.autosave
+
+# Simulink model built at run time
+SimDrive_LoadCases_*.slx
+
+# Run-time exports
+exports_design_ready/
+Design_Summary.mat
+*_Outputs.mat
+*_Plot.png
+Overview_AllCases.png
+release/
+artifacts/
+
+# Operating system files
+Thumbs.db
+*.Zone.Identifier
+desktop.ini
+.DS_Store
+__MACOSX/
+
+# The student hand-out is tracked.
+!student_package/
+!student_package/**
+
+# Files extracted from instructor_answer_key.7z
+/instructor/solution/*
+!/instructor/solution/README.md
+!/instructor/solution/computeShoulderNotchFactors.m
+!/instructor/solution/courseTargets.m
+/docs/EXPECTED_RESULTS.md
