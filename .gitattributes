@@ -1,0 +1,5 @@
+* text=auto
+*.mlx  binary
+*.mat  binary
+*.png  binary
+*.docx binary
